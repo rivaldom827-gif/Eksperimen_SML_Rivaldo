@@ -1,0 +1,41 @@
+name: Run Automated Preprocessing
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas scikit-learn
+
+      - name: Debug — List All Files
+        run: |
+          echo "Current working directory: $PWD"
+          echo "Listing all files recursively:"
+          ls -R
+
+      - name: Run Automated Preprocessing Script
+        run: |
+          python "$GITHUB_WORKSPACE/preprocessing/automate_Nur-Bintang-Hidayat.py"
+
+      - name: Upload Processed Dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: processed_dataset
+          path: preprocessed/IEA_Global_EV_Data_2024_cleaned.csv
