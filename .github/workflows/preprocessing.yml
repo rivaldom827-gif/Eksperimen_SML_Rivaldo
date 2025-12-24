@@ -28,7 +28,7 @@ jobs:
 
       - name: Run preprocessing script
         run: |
-          python Eksperimen_SML_Rivaldo/preprocessing/automate_Rivaldo.py
+          python preprocessing/automate_Rivaldo.py
 
       - name: Commit and push preprocessed dataset
         run: |
