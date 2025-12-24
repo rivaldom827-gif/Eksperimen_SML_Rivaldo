@@ -28,12 +28,13 @@ jobs:
 
       - name: Run preprocessing script
         run: |
-          python preprocessing/automate_Rivaldo.py
+          python Eksperimen_SML_Rivaldo/preprocessing/automate_Rivaldo.py
 
       - name: Commit and push preprocessed dataset
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add preprocessing/dataset_preprocessing.csv
+          git add Eksperimen_SML_Rivaldo/preprocessing/dataset_preprocessing.csv
           git commit -m "Auto-update preprocessed dataset" || echo "No changes to commit"
           git push
+
